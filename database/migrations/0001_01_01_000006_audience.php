@@ -6,17 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $acceptedData = ['Admin', 'Talent', 'Scout', 'Judge', 'Sponsor', 'Coach'];
-
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('role', function (Blueprint $table) {
+        Schema::create('audience', function (Blueprint $table) {
             $table->id();
-            $table->enum('name', $this->acceptedData);
-            $table->string('description');
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->foreignId('audience_category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('role');
+        Schema::dropIfExists('audience');
     }
 };

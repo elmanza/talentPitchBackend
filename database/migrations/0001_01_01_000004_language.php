@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $acceptedData = ['Sponsored', 'Hiring', 'Collaboration', 'Training', 'Intermediation'];
+    protected $acceptedData = ['en', 'es'];
 
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('achievement', function (Blueprint $table) {
+        Schema::create('language', function (Blueprint $table) {
             $table->id();
             $table->enum('name', $this->acceptedData);
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('achievement');
+        Schema::dropIfExists('language');
     }
 };

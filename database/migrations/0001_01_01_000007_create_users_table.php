@@ -18,14 +18,14 @@ return new class extends Migration
             $table->string('username');
             $table->string('email')->unique();
             $table->string('image')->nullable();
-            $table->integer('phone')->nullable();
+            $table->string('phone')->nullable();
             $table->string('phone_country_code', 4)->nullable();
             $table->date('birthday')->nullable();
             $table->dateTimeTz('email_verified_at')->nullable();
             $table->boolean('terms_accepted');
-            $table->foreignId('role_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('main_goal_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('language_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('role_id')->constrained('role')->onDelete('cascade');
+            $table->foreignId('main_goal_id')->constrained('main_goal')->onDelete('cascade');
+            $table->foreignId('language_id')->constrained('language')->onDelete('cascade');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -47,16 +47,16 @@ return new class extends Migration
         });
 
         Schema::create('user_achievement', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('achievement_id')->constrained()->onDelete('cascade');
-            $table->primary(['user_id', 'achievement_id']);
+            $table->foreignId('achievement_id')->constrained('achievement')->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('user_audience', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('audience_id')->constrained()->onDelete('cascade');
-            $table->primary(['user_id', 'audience_id']);
+            $table->foreignId('audience_id')->constrained('audience')->onDelete('cascade');
             $table->timestamps();
         });
     }

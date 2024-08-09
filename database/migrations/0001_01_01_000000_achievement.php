@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    protected $acceptedData = ['Sponsored', 'Hiring', 'Collaboration', 'Training', 'Intermediation'];
+
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('audience', function (Blueprint $table) {
-
+        Schema::create('achievement', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->foreignId('audience_category_id')->constrained()->onDelete('cascade');
+            $table->enum('name', $this->acceptedData);
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('audience');
+        Schema::dropIfExists('achievement');
     }
 };

@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('audience_category', function (Blueprint $table) {
+        Schema::create('audience_categories', function (Blueprint $table) {
             $table->id();
             $table->enum('name', $this->acceptedData);
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('audience_category');
+        Schema::dropIfExists('audience_categories');
     }
 };
