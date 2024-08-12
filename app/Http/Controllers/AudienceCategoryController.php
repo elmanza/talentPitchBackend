@@ -19,6 +19,23 @@ class AudienceCategoryController extends BaseController
     }
 
     /**
+     * Muestra la lista completa
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * @example
+     * {
+     *    "data": [ { AudienceCategory } ]
+     * }
+     */
+    public function index(Request $request)
+    {
+        return response()->json([
+            'data' => $this->repo->all()
+        ]);
+    }
+
+    /**
      * Almacena un nuevo registro en la base de datos.
      *
      * Este método valida los datos de entrada, crea un nuevo recurso

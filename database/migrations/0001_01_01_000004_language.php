@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('language', function (Blueprint $table) {
             $table->id();
-            $table->enum('name', $this->acceptedData);
+            $table->string('name');
             $table->string('description')->nullable();
             $table->timestamps();
         });

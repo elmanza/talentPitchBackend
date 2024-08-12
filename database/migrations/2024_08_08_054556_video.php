@@ -33,6 +33,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('video_challenge_id')->constrained('video_challenge')->onDelete('cascade');
             $table->foreignId('challenge_judge_id')->constrained('challenge_judge')->onDelete('cascade');
+            $table->integer('rate')->default(1);
             $table->timestamps();
         });
 

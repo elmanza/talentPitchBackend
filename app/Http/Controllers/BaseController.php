@@ -108,6 +108,16 @@ abstract class BaseController extends Controller
     public function destroy(Request $request, $id)
     {
         // $userId = $request->user()->getIdentifier();
-        return $this->repo->delete($id, null);
+        $res = $this->repo->delete($id, null);
+        if($res){
+            return response()->json([
+                "status" => 200,
+                "description" => "Eliminado de la Base de datos correctamente"
+            ]);
+        }
+        return response()->json([
+            "status" => 500,
+            "description" => "Error al eliminar el recurso"
+        ]);
     }
 }

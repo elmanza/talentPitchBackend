@@ -10,6 +10,8 @@ use App\Models\Audience;
 use App\Models\User;
 use App\Models\UserAchievement;
 use App\Models\UserAudience;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -19,6 +21,23 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $this->command->info('User seeders running...');
+        User::create([
+            'name' => "Andres",
+            'lastname' => "Manzano Ramirez",
+            'username' => "armanzano",
+            'email' => "ar.manzano.94@gmail.com",
+            'image' => 'https://placehold.co/600x400/000000/FFFFFF?text=Andres+Manzano',
+            'phone' => '3137245481',
+            'phone_country_code' => '57',
+            'birthday' => '1994-01-25',
+            'email_verified_at' => now(),
+            'terms_accepted' => true,
+            'role_id' => 1,
+            'main_goal_id' => 2,
+            'language_id' => 1,
+            'password' => Hash::make('secret'),
+            'remember_token' => Str::random(10),
+        ]);
         $users = User::factory(35)->create();
         $achievements = Achievement::all();
         $audience = Audience::all();

@@ -10,5 +10,10 @@ class UserAudience extends Model
     use HasFactory;
 
     protected $table = 'user_audience';
+
+    protected $fillable = [
+        "audience_id",
+        "user_id"
+    ];
 }
 

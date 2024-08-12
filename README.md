@@ -16,7 +16,7 @@ Talent Pitch API es una API que permite a los usuarios participar en desafíos (
 1. Clona este repositorio:
 
     ```bash
-    git clone https://github.com/tuusuario/talent-pitch-api.git
+    git clone https://github.com/tu_usuario/talentPitchBackend.git
     cd talent-pitch-api
     ```
 
@@ -42,6 +42,7 @@ Talent Pitch API es una API que permite a los usuarios participar en desafíos (
         DB_USERNAME=tu_usuario
         DB_PASSWORD=tu_contraseña
         ```
+
 4. Ejecuta el comando personalizado para migrar, seedear la base de datos e iniciar el servidor:
 
     ```bash
@@ -50,7 +51,7 @@ Talent Pitch API es una API que permite a los usuarios participar en desafíos (
 
    Este comando ejecutará las migraciones para crear las tablas necesarias, llenará la base de datos con datos de prueba utilizando los seeders, y luego iniciará el servidor de desarrollo.
 
-5. ó Inicia el servidor de desarrollo:
+5. También puedes iniciar el servidor de desarrollo con:
 
     ```bash
     php artisan serve
@@ -117,14 +118,16 @@ Todas las rutas de la API están prefijadas con `/api/v1`. Aquí tienes un resum
 - `DELETE /users/{id}`: Elimina un usuario.
 
   - **User Achievements**
-    - `GET /users/achievement/{id}`: Muestra un logro de usuario específico.
+    - `GET /users/achievement/{user_id}`: Muestra todos los logros de un usuario específico.
     - `POST /users/achievement`: Asocia un logro a un usuario.
     - `DELETE /users/achievement/{id}`: Elimina un logro de usuario.
+    - `DELETE /users/achievement/user/{user_id}`: Elimina todos los logros de un usuario específico.
 
   - **User Audience**
-    - `GET /users/audience/{id}`: Muestra una audiencia de usuario específica.
+    - `GET /users/audience/{user_id}`: Muestra todas las audiencias de un usuario específico.
     - `POST /users/audience`: Asocia una audiencia a un usuario.
     - `DELETE /users/audience/{id}`: Elimina una audiencia de usuario.
+    - `DELETE /users/audience/user/{user_id}`: Elimina todas las audiencias de un usuario específico.
 
 ### Challenge
 
@@ -135,19 +138,22 @@ Todas las rutas de la API están prefijadas con `/api/v1`. Aquí tienes un resum
 - `DELETE /challenge/{id}`: Elimina un desafío.
 
   - **Challenge Participants**
-    - `GET /challenge/participant/{id}`: Muestra un participante de un desafío específico.
+    - `GET /challenge/participant/{id}`: Muestra todos los participantes de un desafío específico.
     - `POST /challenge/participant`: Asocia un participante a un desafío.
     - `DELETE /challenge/participant/{id}`: Elimina un participante de un desafío.
+    - `DELETE /challenge/participant/challenge/{id}`: Elimina todos los participantes de un desafío específico.
 
   - **Challenge Judge**
-    - `GET /challenge/judge/{id}`: Muestra un juez de un desafío específico.
+    - `GET /challenge/judge/{id}`: Muestra todos los jueces de un desafío específico.
     - `POST /challenge/judge`: Asocia un juez a un desafío.
     - `DELETE /challenge/judge/{id}`: Elimina un juez de un desafío.
+    - `DELETE /challenge/judge/challenge/{id}`: Elimina todos los jueces de un desafío específico.
 
 ### Video
 
 - `GET /video`: Lista todos los videos.
 - `GET /video/{id}`: Muestra un video específico.
+- `GET /video/user/{user_id}`: Muestra todos los videos de un usuario específico.
 - `POST /video`: Crea un nuevo video.
 - `PUT /video/{id}`: Actualiza un video existente.
 - `DELETE /video/{id}`: Elimina un video.
@@ -160,10 +166,11 @@ Todas las rutas de la API están prefijadas con `/api/v1`. Aquí tienes un resum
   - **Video Challenge Rate**
     - `GET /video/challenge-rate/{id}`: Muestra una calificación de un video en un desafío específico.
     - `POST /video/challenge-rate`: Asocia una calificación a un video en un desafío.
+    - `PUT /video/challenge-rate/{id}`: Actualiza una calificación de un video en un desafío.
     - `DELETE /video/challenge-rate/{id}`: Elimina una calificación de un video en un desafío.
 
   - **Video Likes**
-    - `GET /video/like/{id}`: Muestra los "likes" de un video específico.
+    - `GET /video/like/{video_id}`: Muestra los "likes" de un video específico.
     - `POST /video/like`: Asocia un "like" a un video.
     - `DELETE /video/like/{id}`: Elimina un "like" de un video.
 
@@ -183,6 +190,12 @@ Todos los servicios extienden de `BaseServices`, que proporciona la implementaci
 
 El proyecto incluye un comando personalizado `php artisan serve:migrate` que ejecuta las migraciones y los seeders para poblar la base de datos, seguido de la inicialización del servidor de desarrollo.
 
+## Colección de Postman
+
+Puedes encontrar la colección de Postman para probar los endpoints de la API en el siguiente enlace:
+
+[Postman Collection](https://api.postman.com/collections/11719398-0160a946-4916-4e0c-8e32-b4d19dbc21e4?access_key=PMAT-01J52JS0ZWEZD714E6FV6T1PWX)
+
 ## Cómo Contribuir
 
 1. Crea un fork del repositorio.
@@ -195,4 +208,3 @@ El proyecto incluye un comando personalizado `php artisan serve:migrate` que eje
 ## Licencia
 
 Este proyecto está bajo la [Licencia MIT](LICENSE).
-

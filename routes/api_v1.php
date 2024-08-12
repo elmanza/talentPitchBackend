@@ -59,15 +59,17 @@ Route::prefix('users')->group(function(){
     Route::delete('/{id}', 'UserController@destroy');
 
     Route::prefix('achievement')->group(function(){
-        Route::get('/{id}', 'UserController@show');
+        Route::get('/{user_id}', 'UserController@getAllAchievementForUser');
         Route::post('/', 'UserController@userAchievementStore');
-        Route::delete('/{id}', 'UserController@destroy');
+        Route::delete('/{id}', 'UserController@destroyAchievement');
+        Route::delete('/user/{user_id}', 'UserController@destroyAllAchievementForUser');
     });
 
     Route::prefix('audience')->group(function(){
-        Route::get('/{id}', 'UserController@show');
+        Route::get('/{user_id}', 'UserController@getAllAudienceForUser');
         Route::post('/', 'UserController@userAudienceStore');
-        Route::delete('/{id}', 'UserController@destroy');
+        Route::delete('/{id}', 'UserController@destroyAudience');
+        Route::delete('/user/{user_id}', 'UserController@destroyAllAudienceForUser');
     });
 });
 
@@ -79,21 +81,24 @@ Route::prefix('challenge')->group(function(){
     Route::delete('/{id}', 'ChallengeController@destroy');
 
     Route::prefix('participant')->group(function(){
-        Route::get('/{id}', 'ChallengeController@show');
+        Route::get('/{id}', 'ChallengeController@getAllParticipantsForChallenge');
         Route::post('/', 'ChallengeController@challengeParticipantsStore');
-        Route::delete('/{id}', 'ChallengeController@destroy');
+        Route::delete('/{id}', 'ChallengeController@removeParticipant');
+        Route::delete('/challenge/{id}', 'ChallengeController@destroyAllParticipantForChallenge');
     });
 
     Route::prefix('judge')->group(function(){
-        Route::get('/{id}', 'ChallengeController@show');
+        Route::get('/{id}', 'ChallengeController@getAllJudgesForChallenge');
         Route::post('/', 'ChallengeController@challengeJudgeStore');
-        Route::delete('/{id}', 'ChallengeController@destroy');
+        Route::delete('/{id}', 'ChallengeController@removeJudge');
+        Route::delete('/challenge/{id}', 'ChallengeController@destroyAllJudgeForChallenge');
     });
 });
 
 Route::prefix('video')->group(function(){
     Route::get('/', 'VideoController@index');
     Route::get('/{id}', 'VideoController@show');
+    Route::get('/user/{user_id}', 'VideoController@getByUser');
     Route::post('/', 'VideoController@store');
     Route::put('/{id}', 'VideoController@update');
     Route::delete('/{id}', 'VideoController@destroy');
@@ -107,11 +112,12 @@ Route::prefix('video')->group(function(){
     Route::prefix('challenge-rate')->group(function(){
         Route::get('/{id}', 'VideoController@show');
         Route::post('/', 'VideoController@videoChallengeRateStore');
+        Route::put('/{id}', 'VideoController@updateVideoChallengeRate');
         Route::delete('/{id}', 'VideoController@destroy');
     });
 
     Route::prefix('like')->group(function(){
-        Route::get('/{id}', 'VideoController@show');
+        Route::get('/{video_id}', 'VideoController@show');
         Route::post('/', 'VideoController@videoLikesStore');
         Route::delete('/{id}', 'VideoController@destroy');
     });

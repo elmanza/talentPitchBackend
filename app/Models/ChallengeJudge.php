@@ -10,5 +10,10 @@ class ChallengeJudge extends Model
     use HasFactory;
 
     protected $table = 'challenge_judge';
+
+    protected $fillable = [
+        'user_id',
+        'challenge_id'
+    ];
 }
 

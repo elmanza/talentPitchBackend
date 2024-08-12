@@ -88,6 +88,25 @@ abstract class BaseServices implements IBase
 
     /**
      * @param $id
+     * @param $userId
+     * @return mixed
+     */
+    public function deleteByColumn(array $where = [])
+    {
+        try {
+            if(!empty($where)){
+                $res = $this->model->where($where)->delete();
+                return $res;
+            }
+            return "Error inside function deleteByColumn";
+        } catch (\Throwable $th) {
+            return "[deleteByColumn]: 500 server error";
+        }
+
+    }
+
+    /**
+     * @param $id
      * @param array $columns
      * @return mixed
      */
@@ -123,7 +142,7 @@ abstract class BaseServices implements IBase
      */
     public function allByUser($userId, $columns = array('*'))
     {
-        return $this->model->where('r_user_id', $userId)->get($columns);
+        return $this->model->where('user_id', $userId)->get($columns);
     }
 
     /**

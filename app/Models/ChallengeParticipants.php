@@ -10,5 +10,10 @@ class ChallengeParticipants extends Model
     use HasFactory;
 
     protected $table = 'challenge_participants';
+
+    protected $fillable = [
+        'user_id',
+        'challenge_id'
+    ];
 }
 

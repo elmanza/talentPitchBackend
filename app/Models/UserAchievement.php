@@ -10,5 +10,10 @@ class UserAchievement extends Model
     use HasFactory;
 
     protected $table = 'user_achievement';
+
+    protected $fillable = [
+        'user_id',
+        'achievement_id'
+    ];
 }
 

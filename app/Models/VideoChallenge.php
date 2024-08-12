@@ -10,5 +10,10 @@ class VideoChallenge extends Model
     use HasFactory;
 
     protected $table = 'video_challenge';
+
+    protected $fillable = [
+        'video_id',
+        'challenge_id'
+    ];
 }
 
